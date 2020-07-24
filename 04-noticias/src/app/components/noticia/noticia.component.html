@@ -1,0 +1,27 @@
+<ion-card color="dark">
+
+  <ion-card-header>
+    <ion-card-subtitle> 
+      <span class="text-primary"> {{ indice + 1 }}. </span>
+      <span class="noticia-source-name">{{ noticia.source.name }}</span> 
+      <p>Published: {{ noticia.publishedAt  | date: 'dd/MM/yyyy hh:mm'}} </p>
+
+      <div class="noticia-more"> 
+        <ion-button fill="clear" (click)="lazarMenu()">     
+          <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>     
+        </ion-button>
+      </div>
+
+
+    </ion-card-subtitle>
+    <ion-card-title (click)="abrirNoticia()">{{ noticia.title }}</ion-card-title>
+  </ion-card-header>
+
+  <!-- Muestra la imagen si existe en el source. [src] va entre corchetes porque se enlaza con un valor del .ts -->
+  <ion-img (click)="abrirNoticia()" *ngIf="noticia.urlToImage" [src]="noticia.urlToImage"></ion-img>
+
+  <ion-card-content>
+    <p> {{ noticia.description }} </p>
+  </ion-card-content>
+
+</ion-card>

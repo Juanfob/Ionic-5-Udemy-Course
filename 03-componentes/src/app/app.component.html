@@ -1,0 +1,35 @@
+<ion-app>
+
+  <!-- 
+    comentamos este menu, porque vamos a utilizar ion-split-pane
+    
+    <app-menu></app-menu>
+ -->
+
+  <ion-split-pane when="md" contentId="principal">
+   
+    <!-- <app-menu></app-menu> -->
+    <ion-menu side="start" menuId="primerMenu" contentId="principal">
+      <ion-header>
+        <ion-toolbar color="primary">
+          <ion-title>Menu Principal</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+    
+          <ion-menu-toggle autoHide="false" *ngFor="let c of componentes | async">       
+            <ion-item  [routerLink]="c.redirectTo">
+              <ion-icon [name]="c.icon" slot="start"></ion-icon>
+              <ion-label>{{ c.name }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>     
+        
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+
+  
+    <ion-router-outlet id="principal"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>
