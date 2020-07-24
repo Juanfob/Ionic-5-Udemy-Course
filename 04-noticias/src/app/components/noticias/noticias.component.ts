@@ -10,6 +10,8 @@ import { Article } from '../../interfaces/interfaces';
 export class NoticiasComponent implements OnInit {
 
   @Input() noticias: Article[] = [];
+  // para comprobar si estamos en la pestaña favoritos
+  @Input() enFavoritos = false;
 
   constructor() { }
 

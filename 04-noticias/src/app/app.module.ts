@@ -27,7 +27,10 @@ import { IonicStorageModule } from '@ionic/storage';
     IonicModule.forRoot(), 
     AppRoutingModule, 
     HttpClientModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot({
+      name: '_noticiasDB',
+      driverOrder: ['indexeddb', 'sqlite', 'websql']
+    })
   ],
   providers: [
     StatusBar,
