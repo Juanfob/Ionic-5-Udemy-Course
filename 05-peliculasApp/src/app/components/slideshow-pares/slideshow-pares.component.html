@@ -1,0 +1,25 @@
+<ion-slides class="slide-full" [options]="slidesOpts">
+
+  <ion-slide *ngFor="let pares of peliculas | pares">
+
+    <ion-row>
+
+      <ion-col size="12" *ngFor="let pelicula of pares">
+        <ion-card>      
+          <!-- pasamos el nombre de la imagen con el pipe imagen-->
+          <img [src]="pelicula.poster_path | imagen" class="poster">
+        </ion-card>    
+      </ion-col>     
+
+    </ion-row>
+    
+  </ion-slide>
+
+
+  <ion-slide class="slide-mas">
+    <ion-button (click)="onClick()" expand="full" shape="round" size="large" class="btn-mas">
+      <ion-icon slot="icon-only" name="add"></ion-icon>
+    </ion-button>
+  </ion-slide>
+
+</ion-slides>

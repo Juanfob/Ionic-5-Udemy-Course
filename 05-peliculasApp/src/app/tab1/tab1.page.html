@@ -1,18 +1,35 @@
 
 <ion-content [fullscreen]="true">
 
-  <ion-slides class="slide-full" [options]="slidesOpts">
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col>
+        <h3>Películas Nuevas</h3>
+      </ion-col>      
+    </ion-row>
+  </ion-grid>
 
-    <ion-slide *ngFor="let pelicula of peliculasRecientes ">
+  <app-slideshow-backdrop [peliculas]="peliculasRecientes"></app-slideshow-backdrop>
 
-      <ion-card>
-        <!-- pasamos el nombre de la imagen con el pipe imagen-->
-        <img [src]="pelicula.backdrop_path | imagen">
-      </ion-card>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col>
+        <h3>Cartelera</h3>
+      </ion-col>      
+    </ion-row>
+  </ion-grid>
 
-    </ion-slide>
+  <app-slideshow-poster [peliculas]="peliculasRecientes"></app-slideshow-poster>
 
-  </ion-slides>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col>
+        <h3>Populares</h3>
+      </ion-col>      
+    </ion-row>
+  </ion-grid>
 
-
+  <app-slideshow-pares [peliculas]="populares"
+                       (cargarMas)="cargarMas()"></app-slideshow-pares>
+  
 </ion-content>

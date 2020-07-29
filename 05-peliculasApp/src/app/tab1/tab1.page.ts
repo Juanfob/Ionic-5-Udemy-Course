@@ -10,20 +10,34 @@ import { Pelicula } from '../interfaces/interfaces';
 export class Tab1Page implements OnInit{
 
   peliculasRecientes: Pelicula[] = []; 
-
-  slidesOpts = {
-    slidesPerView: 1.1,
-    freeMode:true
-  };
+  populares: Pelicula[] = [];
 
   constructor( private moviesService: MoviesService) {}
 
   ngOnInit() {
     this.moviesService.getFeature().subscribe( resp => { 
-      console.log ('Respuesta ', resp); 
+      //console.log ('Respuesta ', resp); 
       this.peliculasRecientes = resp.results;
     } );
 
+    this.getPopulares();
+
+  }
+
+  cargarMas() {
+    this.getPopulares();
+  }
+
+  getPopulares() {
+    this.moviesService.getPopulares().subscribe( resp => {
+      //console.log ('Populares ', resp); 
+      //this.populares = resp.results; -> esto machaca el array con el nuevo
+
+      const arrTemp =  [ ...this.populares, ...resp.results];
+
+
+      this.populares = arrTemp;
+    });
   }
 
 }
