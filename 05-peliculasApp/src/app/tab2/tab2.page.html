@@ -1,17 +1,36 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Buscar Película
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-toolbar>
+  <ion-searchbar placeholder="Buscar película" 
+                animated
+                debounce="700"
+                [value]="textoBuscar"
+                (ionChange)="buscar( $event )"></ion-searchbar>
+</ion-toolbar>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+<ion-content>
+  <ion-grid>
+  <ion-row>
+    <ion-col class="ion-text-center">
+      <ion-spinner name="crescent"></ion-spinner>
+    </ion-col>
+  </ion-row>
+  </ion-grid>
+
+  <ion-list-header>
+    <ion-label>Sugerencias</ion-label>
+  </ion-list-header>
+  <ion-list>
+    <ion-item *ngFor="let peliculaNombre of peliculasNuevas" (click)="textoBuscar = peliculaNombre.original_title">
+      <ion-label color="primary"> {{ peliculaNombre.original_title}}  </ion-label>
+    </ion-item>    
+  </ion-list>
+
+
 </ion-content>

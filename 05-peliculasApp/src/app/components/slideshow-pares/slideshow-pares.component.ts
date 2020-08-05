@@ -1,5 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Pelicula } from '../../interfaces/interfaces';
+import { ModalController } from '@ionic/angular';
+import { DetalleComponent } from '../detalle/detalle.component';
+
 
 
 @Component({
@@ -19,7 +22,7 @@ export class SlideshowParesComponent implements OnInit {
   };
 
 
-  constructor() { }
+  constructor( private modalCtrl: ModalController) { }
 
   ngOnInit() {}
 
@@ -27,5 +30,17 @@ export class SlideshowParesComponent implements OnInit {
     //console.log('Cargar más');
     //mandamos al padre tab1 el evento de cargar mas
     this.cargarMas.emit();
+  }
+
+  async verDetalle( id: string ){
+    const modal = await this.modalCtrl.create({
+      component: DetalleComponent,
+      componentProps: {
+        id: id
+      }
+    });
+  
+    modal.present();
+    
   }
 }
