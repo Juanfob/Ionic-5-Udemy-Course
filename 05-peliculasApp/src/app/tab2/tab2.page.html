@@ -15,7 +15,8 @@
 </ion-toolbar>
 
 <ion-content>
-  <ion-grid>
+
+  <ion-grid *ngIf="buscando">
   <ion-row>
     <ion-col class="ion-text-center">
       <ion-spinner name="crescent"></ion-spinner>
@@ -23,14 +24,36 @@
   </ion-row>
   </ion-grid>
 
-  <ion-list-header>
-    <ion-label>Sugerencias</ion-label>
-  </ion-list-header>
-  <ion-list>
-    <ion-item *ngFor="let peliculaNombre of peliculasNuevas" (click)="textoBuscar = peliculaNombre.original_title">
-      <ion-label color="primary"> {{ peliculaNombre.original_title}}  </ion-label>
+  <ion-list *ngIf="peliculasBusqueda.length === 0">
+    <ion-list-header>
+      <ion-label>Sugerencias</ion-label>
+    </ion-list-header>
+  
+    <ion-item *ngFor="let sugerencia of peliculasNuevas" (click)="textoBuscar = sugerencia.original_title">
+      <ion-label color="primary"> {{ sugerencia.original_title}}  </ion-label>
     </ion-item>    
   </ion-list>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="6" *ngFor="let peliculaBusqueda of peliculasBusqueda">
+        
+        <ion-card (click)="verDetalle( peliculaBusqueda.id )">
+          <img [src]="peliculaBusqueda.poster_path | imagen">
+
+          <ion-card-header>
+            <ion-card-subtitle> {{ peliculaBusqueda.release_date }} </ion-card-subtitle>            
+          </ion-card-header>
+
+          <ion-card-content>
+            <h2> {{ peliculaBusqueda.original_title }} </h2>
+          </ion-card-content>
+          
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 
 </ion-content>

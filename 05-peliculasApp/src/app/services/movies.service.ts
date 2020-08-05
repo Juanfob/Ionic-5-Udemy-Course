@@ -15,13 +15,15 @@ export class MoviesService {
 
   private popularesPage = 0;
 
+  generos: any[] =[];
+
   constructor( private http: HttpClient) { } 
 
 
 
   private ejecutarQuery<T>( query: string) {
     query = URL + query;
-    query += `&api_key=${ apiKey }&language=en&include_image_language=en`;
+    query += `&api_key=${ apiKey }&language=es&include_image_language=es`;
     
     console.log('Query: ',query);
     
@@ -68,6 +70,21 @@ export class MoviesService {
 
   buscarPeliculas( texto: string){
     return this.ejecutarQuery(`/search/movie?query=${ texto}`);
+  }
+
+  cargarGeneros(){
+
+    return new Promise( resolve => {
+      this.ejecutarQuery(`/genre/movie/list?a=1`)
+      .subscribe( resp => {
+        this.generos = resp['genres'];
+        resolve(this.generos);
+      });
+
+    });
+
+
+    
   }
 
 }
