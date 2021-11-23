@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 @Component({
   selector: 'app-tab1',
@@ -7,6 +8,22 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+  swiperOpts =  {
+    allowSlidePrev: false,
+    allowSlideNext: false
+  };
 
+  constructor( private barcodeScanner: BarcodeScanner) {}
+
+  scan() {
+    this.barcodeScanner.scan().then(barcodeData => {
+      console.log('Barcode data', barcodeData);
+     }).catch(err => {
+         console.log('Error', err);
+     });
+  }
+
+  ionViewWillEnter(){
+    this.scan();
+  }
 }
