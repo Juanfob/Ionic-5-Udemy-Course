@@ -32,6 +32,7 @@ export class ModalPage implements OnInit {
     console.log('onWillDismiss');
 
     console.log(data);
+    console.log(JSON.stringify(data));
 
   }
 
