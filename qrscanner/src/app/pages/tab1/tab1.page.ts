@@ -26,7 +26,8 @@ export class Tab1Page {
       }
      }).catch(err => {
          console.log('Error', err);
-         this.dataLocal.guardarRegistro( 'QRCode', 'https://juanfermin.com' ); // TODO Eliminar en producción
+         //this.dataLocal.guardarRegistro( 'QRCode', 'https://juanfermin.com' ); // TODO Eliminar en producción
+         this.dataLocal.guardarRegistro( 'QRCode', 'geo:38.33843001594599, -0.506802586441721' ); // TODO Eliminar en producción
      });
   }
 
