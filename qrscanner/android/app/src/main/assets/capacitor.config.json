@@ -1,6 +1,6 @@
 {
 	"appId": "com.juanfermin.qrscanner",
-	"appName": "qrscannerf",
+	"appName": "QRScanner",
 	"webDir": "www",
 	"bundledWebRuntime": false
 }
